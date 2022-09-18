@@ -2,7 +2,8 @@ package controllers
 
 import (
 	"net/http"
-	"sample-go-app-todo/config"
+
+	"github.com/naosuke884/ClipChecker2/config"
 )
 
 func StartMainServer() error {

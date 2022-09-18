@@ -1,6 +1,6 @@
 package main
 
-import "sample-go-app-todo/app/controllers"
+import "github.com/naosuke884/ClipChecker2/app/controllers"
 
 func main() {
 	controllers.StartMainServer()

@@ -5,9 +5,9 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"sample-go-app-todo/config"
 
 	"github.com/google/uuid"
+	"github.com/naosuke884/ClipChecker2/config"
 
 	_ "github.com/mattn/go-sqlite3"
 )

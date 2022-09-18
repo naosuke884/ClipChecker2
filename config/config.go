@@ -2,8 +2,8 @@ package config
 
 import (
 	"log"
-	"sample-go-app-todo/utils"
 
+	"github.com/naosuke884/ClipChecker2/utils"
 	"gopkg.in/ini.v1"
 )
 
