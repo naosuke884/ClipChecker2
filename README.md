@@ -1,1 +1,2 @@
-# ClipChecker2
+# ClipChecker
+sample app make with golang
