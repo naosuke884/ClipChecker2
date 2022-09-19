@@ -1,9 +1,8 @@
 package controllers
 
 import (
+	"ClipChecker2/config"
 	"net/http"
-
-	"github.com/naosuke884/ClipChecker2/config"
 )
 
 func StartMainServer() error {

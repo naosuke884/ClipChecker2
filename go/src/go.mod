@@ -1,4 +1,4 @@
-module github.com/naosuke884/ClipChecker2
+module ClipChecker2
 
 go 1.19
 
