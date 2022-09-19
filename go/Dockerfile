@@ -5,8 +5,6 @@ WORKDIR ${ROOT}
 
 RUN apk update && apk add git
 
-COPY ./src/main.go ${ROOT}
-
-COPY ./src/go.mod ${ROOT}
+COPY ./src/ ${ROOT}
 
 RUN go mod tidy

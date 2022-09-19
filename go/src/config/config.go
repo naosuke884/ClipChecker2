@@ -1,9 +1,9 @@
 package config
 
 import (
+	"ClipChecker2/utils"
 	"log"
 
-	"github.com/naosuke884/ClipChecker2/utils"
 	"gopkg.in/ini.v1"
 )
 

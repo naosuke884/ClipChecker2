@@ -1,13 +1,13 @@
 package models
 
 import (
+	"ClipChecker2/config"
 	"crypto/sha1"
 	"database/sql"
 	"fmt"
 	"log"
 
 	"github.com/google/uuid"
-	"github.com/naosuke884/ClipChecker2/config"
 
 	_ "github.com/mattn/go-sqlite3"
 )
