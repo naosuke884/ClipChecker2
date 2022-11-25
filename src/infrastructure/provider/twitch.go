@@ -1,8 +1,8 @@
 package provider
 
 import (
-	"ClipChecker2/domain"
-	"ClipChecker2/share"
+	"github.com/naosuke884/ClipChecker2/later/domain"
+	"github.com/naosuke884/ClipChecker2/later/share"
 )
 
 type TwitchClient struct {

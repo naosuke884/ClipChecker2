@@ -8,3 +8,10 @@ type User struct {
 	ImageURL string `json:"image_url"`
 	Token    string `json:"token"`
 }
+
+type UserRepository interface {
+	Store(*User) error
+	Find(*ID) (*User, error)
+	Update(*User) error
+	Delete(*ID) error
+}

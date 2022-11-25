@@ -1,12 +1,12 @@
 package config
 
 import (
-	"ClipChecker2/utils"
 	"log"
 	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/michaeljs1990/sqlitestore"
+	"github.com/naosuke884/ClipChecker2/later/utils"
 	"gopkg.in/ini.v1"
 )
 
