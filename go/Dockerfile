@@ -5,6 +5,6 @@ WORKDIR ${ROOT}
 
 RUN apk update && apk add git
 
-COPY ./src/ ${ROOT}
+COPY . ${ROOT}
 
 RUN go mod tidy
