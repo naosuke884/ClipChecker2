@@ -9,9 +9,16 @@ type User struct {
 	Token    string `json:"token"`
 }
 
-type UserRepository interface {
+type IUserRepository interface {
 	Store(*User) error
-	Find(*ID) (*User, error)
+	Find(ID) (*User, error)
 	Update(*User) error
-	Delete(*ID) error
+	Delete(ID) error
+}
+
+type IUserApplicationService interface {
+	Register(*User) error
+	Get(ID) (*User, error)
+	Update(*User) error
+	Delete(ID) error
 }
