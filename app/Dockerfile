@@ -1,10 +1,10 @@
 FROM golang:1.19.1-alpine3.16
 
-ENV ROOT=/go/src/app
+ENV ROOT=/app
 WORKDIR ${ROOT}
 
 RUN apk update && apk add git
 
-COPY . ${ROOT}
+COPY go.mod go.sum ${ROOT}
 
-RUN go mod tidy
+CMD ["go", "run" ,"main.go"]

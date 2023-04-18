@@ -2,6 +2,7 @@ package provider
 
 import (
 	"log"
+	"os"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/naosuke884/ClipChecker2/later/domain"
@@ -23,14 +24,6 @@ type ITwitchProvider interface {
 	GetFollows() ([]domain.BroadCaster, error)
 	GetClips() ([]domain.Clip, error)
 	GetToken() (string, error)
-}
-
-func getTwitchUserToken(client *resty.Client) (string, error) {
-	resp, err := client.R().
-		SetHeader("Content-Type", "application/x-www-form-urlencoded").
-		SetBody([]byte(`{"client_id=1q2w3e4r5t6y7u8i9o0p","client_secret=1q2w3","e4r5t6y7u8i9o0p",}`)).
-		Post("https://id.twitch.tv/oauth2/token")
-	return string(resp.Body()), err
 }
 
 func NewTwitchProvider(client *resty.Client) ITwitchProvider {
@@ -58,4 +51,15 @@ func (t *TwitchProvider) GetFollows() ([]domain.BroadCaster, error) {
 
 func (t *TwitchProvider) GetClips() ([]domain.Clip, error) {
 	return nil, nil
+}
+
+func getTwitchUserToken(client *resty.Client) (string, error) {
+	resp, err := client.R().
+		SetFormData(map[string]string{
+			"client_id":     os.Getenv("CLIENT_ID"),
+			"client_secret": os.Getenv("CLIENT_SECRET"),
+			"grant_type":    "client_credentials",
+		}).
+		Post("https://id.twitch.tv/oauth2/token")
+	return string(resp.Body()), err
 }
