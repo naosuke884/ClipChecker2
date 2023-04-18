@@ -1,9 +1,10 @@
 version: "3"
 services:
-  go:
-    build: ./go
-    depends_on:
-    - db
+  web:
+    build: ./app
+    ports:
+      - "8080:8080"
     volumes:
-      - ./go:/go/src/app
+      - ./app:/work
+    stdin_open: true
     tty: true
