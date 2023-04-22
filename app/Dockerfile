@@ -1,14 +1,12 @@
 FROM golang:1.19.1-alpine3.16
 
-ENV ROOT=/work
+ENV ROOT /work
+ENV GO_ENV dev
+
 WORKDIR ${ROOT}
 
-RUN apk update && apk add git
-RUN apk add gcc
+RUN apk update && apk add --no-cache alpine-sdk build-base
 
-COPY ./ ${ROOT}
+COPY ./main.go ${ROOT}
 
-RUN go mod download
-
-# CMD ["go", "run" ,"main.go"]
-CMD ["ash"]
+CMD ["go","run","main.go"]

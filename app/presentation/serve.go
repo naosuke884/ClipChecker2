@@ -2,11 +2,13 @@ package presentation
 
 import (
 	"database/sql"
+	"fmt"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/mattn/go-sqlite3"
 
+	"github.com/naosuke884/ClipChecker2/later/config"
 	"github.com/naosuke884/ClipChecker2/later/infrastructure"
 	"github.com/naosuke884/ClipChecker2/later/service"
 )
@@ -37,7 +39,7 @@ func MainServe() {
 	presenter.ServeUser()
 
 	// サーバーを起動
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%v", config.Config.Web.Port)))
 }
 
 func getUserPresenter() IUserPresenter {

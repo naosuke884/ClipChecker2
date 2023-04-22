@@ -1,59 +1,36 @@
 package config
 
 import (
+	"io/ioutil"
 	"log"
-	"os"
 
-	"github.com/joho/godotenv"
-	"github.com/michaeljs1990/sqlitestore"
 	"github.com/naosuke884/ClipChecker2/later/utils"
-	"gopkg.in/ini.v1"
+	"gopkg.in/yaml.v2"
 )
 
 type ConfigList struct {
-	Port      string
-	SQLDriver string
-	DbName    string
-	LogFile   string
-	Static    string
+	Web struct {
+		Port    string `yaml:"port"`
+		LogFile string `yaml:"log-file"`
+	}
+
+	Db struct {
+		Driver    string `yaml:"driver"`
+		Sqlite3Db string `yaml:"sqlite3-db"`
+	}
 }
 
 var Config ConfigList
 
-var Store *sqlitestore.SqliteStore
-
 func Load() {
 	loadConfig()
-	loadEnv()
-	setStore()
-	utils.LoggingSettings(Config.LogFile)
+	utils.LoadEnv()
+	utils.LoggingSettings(Config.Web.LogFile)
 }
 
 func loadConfig() {
-	cfg, err := ini.Load("config.ini")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	Config = ConfigList{
-		Port:      cfg.Section("web").Key("port").MustString("8080"),
-		SQLDriver: cfg.Section("db").Key("driver").String(),
-		DbName:    cfg.Section("db").Key("name").String(),
-		LogFile:   cfg.Section("web").Key("logfile").String(),
-		Static:    cfg.Section("web").Key("static").String(),
-	}
-}
-
-func loadEnv() {
-	// 読み込めなかったら err にエラーが入ります。
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-}
-
-func setStore() {
-	var err error
-	Store, err = sqlitestore.NewSqliteStore("ClipChecker.db", "sessions", "/", 3600, []byte(os.Getenv("SESSION_KEY")))
+	content, _ := ioutil.ReadFile("config.yml")
+	err := yaml.Unmarshal(content, &Config)
 	if err != nil {
 		log.Fatal(err)
 	}
